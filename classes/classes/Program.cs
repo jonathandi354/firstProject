@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace classes
 {
+    
+
     class FunctionContainers
     {
-        private Dictionary<string, int> hash;
-
+        private Dictionary<string, Func<double, double>> hash;
+        
         public FunctionContainers()
         {
-            hash = new Dictionary<string, int>();
+            hash = new Dictionary<string, Func<double, double>>();
         }
-        public int this[string key]
+        public Func<double, double> this[string key]
         {
             get
             {
@@ -22,6 +25,7 @@ namespace classes
             }
             set
             {
+                
                 hash.Add(key, value);
             }
         }
@@ -31,9 +35,9 @@ namespace classes
         static void Main(string[] args)
         {
             FunctionContainers f = new FunctionContainers();
-            f["hi"] = 2;
-            f["by"] = 3;
-            Console.WriteLine(f["hi"]);
+            f["hi"] = x => x * 2;
+
+            Console.WriteLine(f["hi"](3));
         }
     }
 }
