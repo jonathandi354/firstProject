@@ -25,7 +25,6 @@ namespace classes
             }
             set
             {
-                
                 hash.Add(key, value);
             }
         }
