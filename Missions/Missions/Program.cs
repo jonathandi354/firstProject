@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Missions
 {
+    public class Args : EventArgs
+    {
+        public Double value { get; set; }
+        public Func<double, double> func { get; set; }
+    }
     public interface IMission
     {
         event EventHandler<double> OnCalculate; // An Event of when a mission is activated
@@ -16,11 +21,18 @@ namespace Missions
     class SingleMission : IMission
     {
         public string Name { get; }
-
+        private double result;
         public string Type { get; }
+        private Func<double, double> func;
 
-        public SingleMission(string name)
+        public void MyFunc(object sender, double value)
         {
+            result = func(value);
+        }
+
+        public SingleMission(Func<double, double> func, string name)
+        {
+            this.func = func;
             Name = name;
             Type = "SingleMission";
         }
@@ -29,15 +41,23 @@ namespace Missions
 
         public double Calculate(double value)
         {
-            throw new NotImplementedException();
+            OnCalculate += MyFunc;
+            OnCalculate(this, value);
+            return result;
+
+
+            
         }
     }
 
 
     class Program
     {
+        
         static void Main(string[] args)
         {
+
+
         }
     }
 }

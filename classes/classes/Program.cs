@@ -12,10 +12,11 @@ namespace classes
     class FunctionContainers
     {
         private Dictionary<string, Func<double, double>> hash;
-        
+        //private Dictionary<string, EventHandler> hash;
         public FunctionContainers()
         {
             hash = new Dictionary<string, Func<double, double>>();
+            //hash = new Dictionary<string, EventHandler>();
         }
         public Func<double, double> this[string key]
         {
