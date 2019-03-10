@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Missions
 {
-    public class Args : EventArgs
-    {
-        public Double value { get; set; }
-        public Func<double, double> func { get; set; }
-    }
+    
     public interface IMission
     {
         event EventHandler<double> OnCalculate; // An Event of when a mission is activated
@@ -35,14 +31,15 @@ namespace Missions
             this.func = func;
             Name = name;
             Type = "SingleMission";
+            OnCalculate += MyFunc;
         }
 
         public event EventHandler<double> OnCalculate;
 
         public double Calculate(double value)
         {
-            OnCalculate += MyFunc;
-            OnCalculate(this, value);
+            
+            OnCalculate?.Invoke(this, value);
             return result;
 
 
