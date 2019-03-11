@@ -24,7 +24,13 @@ namespace Missions
                 }
                 set
                 {
-                    hash.Add(key, value);
+                    if (hash.ContainsKey(key)) 
+                    {
+                        hash[key] = value; 
+                    } else {
+                        hash.Add(key, value);
+                    }
+                    
                 }
             }
     }
@@ -102,7 +108,7 @@ namespace Missions
                                                   
         }
     }
-
+    
 
     class Program
     {
@@ -119,8 +125,20 @@ namespace Missions
             Console.WriteLine(s.Calculate(3));
             ComposedMission c = new ComposedMission("by");
             c.Add(containers["func1"]).Add(containers["func2"]);
+            EventHandler<double> LogHandler = (sender, val) =>
+            {
+                IMission mission = sender as IMission;
+                if (mission != null)
+                {
+                    Console.WriteLine($"Mission of Type: {mission.Type} with the Name{mission.Name} returned {val}");
+                
+                }
+            };
+            c.OnCalculate+=LogHandler;
+            
             Console.WriteLine(c.Calculate(2));
             Console.ReadLine();
+           
         }
     }
 }
