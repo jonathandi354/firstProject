@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 namespace Missions
 {
     
-    class FunctionContainers
+    /*class FunctionsContainer
     {
             private Dictionary<string, Func<double, double>> hash;
             //private Dictionary<string, EventHandler> hash;
-            public FunctionContainers()
+           
+
+            public FunctionsContainer()
             {
                 hash = new Dictionary<string, Func<double, double>>();
                 //hash = new Dictionary<string, EventHandler>();
@@ -33,26 +35,23 @@ namespace Missions
                     
                 }
             }
-    }
+    }*/
     
-    public interface IMission
+    /*public interface IMission
     {
         event EventHandler<double> OnCalculate; // An Event of when a mission is activated
         String Name { get; }
         String Type { get; }
         double Calculate(double value);
-    }
-    class SingleMission : IMission
+    }*/
+    /*class SingleMission : IMission
     {
         public string Name { get; }
         //private double result;
         public string Type { get; }
         private Func<double, double> func;
 
-        /*public void MyFunc(object sender, double value)
-        {
-            result = func(value);
-        }*/
+        
 
         public SingleMission(Func<double, double> func, string name)
         {
@@ -71,9 +70,9 @@ namespace Missions
             return result;
             
         }
-    }
+    }*/
 
-    class ComposedMission : IMission
+    /*class ComposedMission : IMission
     {
         public string Name { get; }
 
@@ -107,7 +106,7 @@ namespace Missions
                 
                                                   
         }
-    }
+    }*/
     
 
     class Program
@@ -117,7 +116,7 @@ namespace Missions
         {
             
             
-            FunctionContainers containers = new FunctionContainers();
+            FunctionsContainer containers = new FunctionsContainer();
             containers["func1"] = x=>x*2;
             containers["func2"] = x=>x+3;
 
