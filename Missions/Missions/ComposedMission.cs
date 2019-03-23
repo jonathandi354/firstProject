@@ -15,7 +15,7 @@ namespace Missions
         public ComposedMission(string name)
         {
             Name = name;
-            Type = "ComposedMission";
+            Type = "Composed";
             funcs = new List<Func<double, double>>();
         }
 

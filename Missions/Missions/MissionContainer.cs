@@ -9,19 +9,26 @@ namespace Missions
     class FunctionsContainer
     {
         private Dictionary<string, Func<double, double>> hash;
-        //private Dictionary<string, EventHandler> hash;
 
 
         public FunctionsContainer()
         {
             hash = new Dictionary<string, Func<double, double>>();
-            //hash = new Dictionary<string, EventHandler>();
         }
         public Func<double, double> this[string key]
         {
             get
             {
+                if (!hash.ContainsKey(key))
+                {
+                    if (key.Equals("Stam"))
+                    {
+                        hash["Stam"] = x => x;
+                    }
+                }
                 return hash[key];
+
+                
             }
             set
             {
@@ -35,6 +42,15 @@ namespace Missions
                 }
 
             }
+        }
+        public List<string> getAllMissions()
+        {
+            List<string> list = new List<string>();
+           foreach(var name in hash)
+            {
+                list.Add(name.Key);
+            }
+            return list;
         }
     }
 }
